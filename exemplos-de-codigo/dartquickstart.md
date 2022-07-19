@@ -271,6 +271,21 @@ class Task {
 
 Neste caso, é preciso voltar à chamada posicional também.
 
+4.5. Também é possível criar um construtor nomeado:
+
+```dart
+  Task.fromInput()
+      : readFromInput = true,
+        showLineNumbers = false,
+        paths = [];
+```
+
+Assim, quando for utilizá-lo, basta chamá-lo:
+
+```dart
+final task = Task.fromInput();
+```
+
 ## Mais informações
 
 Há muitos detalhes interessantes sobre a linguagem Dart. O site oficial tem um [tour completo baseado em exemplos](https://dart.dev/guides/language/language-tour) bastante interessante para ser estudado.
