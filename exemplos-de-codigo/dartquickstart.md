@@ -286,6 +286,140 @@ Assim, quando for utilizá-lo, basta chamá-lo:
 final task = Task.fromInput();
 ```
 
+## 5. Em Dart, funções são objetos de primeira classe
+
+5.1. Modifique o arquivo `bin/dcat.dart`:
+
+```dart
+import 'package:args/args.dart';
+import 'package:dcat/dcat.dart';
+
+const lineNumber = 'line-number';
+
+void log(String txt) {
+  print("${DateTime.now().toString()} : $txt");
+}
+
+void main(List<String> arguments) {
+  final parser = ArgParser();
+  parser.addFlag(lineNumber, negatable: false, abbr: 'n');
+  ArgResults argResults = parser.parse(arguments);
+  final paths = argResults.rest;
+
+  final readFromInput = paths.isEmpty;
+
+  final task = Task(readFromInput, argResults[lineNumber], paths);
+
+  task.dcat(log);
+}
+```
+
+5.2. Modifique o arquivo `lib/dcat.dart`:
+
+```dart
+import 'dart:io';
+import 'dart:convert';
+
+class Task {
+  bool readFromInput;
+  bool showLineNumbers;
+  List<String> paths;
+
+  Task(this.readFromInput, this.showLineNumbers, this.paths);
+
+  Task.fromInput()
+      : readFromInput = true,
+        showLineNumbers = false,
+        paths = [];
+
+  Future<void> dcat(Function log) async {
+    log("Job started!");
+    exitCode = 0;
+
+    if (readFromInput) {
+      await stdin.pipe(stdout);
+    } else {
+      for (final path in paths) {
+        var lineNumber = 1;
+        final lines = utf8.decoder
+            .bind(File(path).openRead())
+            .transform(const LineSplitter());
+        try {
+          await for (final line in lines) {
+            if (showLineNumbers) {
+              stdout.write('${lineNumber++} ');
+            }
+            stdout.writeln(line);
+          }
+        } catch (_) {
+          await _handleError(path);
+        }
+      }
+    }
+
+    log("Job completed!");
+  }
+
+  Future<void> _handleError(String path) async {
+    if (await FileSystemEntity.isDirectory(path)) {
+      stderr.writeln('error: $path is a directory');
+    } else {
+      exitCode = 2;
+    }
+  }
+}
+```
+
+Veja como a função é passada como um parâmetro comum, e chamada normalmente.
+
+5.3. Também é possível restringir os tipos de retorno e parâmetros da função:
+
+```dart
+    Future<void> dcat(int Function(String) log) async {
+        ...
+```
+
+Tente passar uma função com argumentos/retorno diferentes do esperado.
+
+5.4. É também possível utilizar funções anônimas:
+
+```dart
+  task.dcat((txt) {
+    print("${DateTime.now().toString()} : $txt");
+    return 0;
+  });
+```
+
+5.5. Se a função anônima não faz nada além de retornar um valor, é possível simplificar:
+
+No arquivo `lib/dcat.dart`:
+
+```dart
+  Future<void> dcat(
+    String Function(String) log,
+  ) async {
+    print(log("Job started!"));
+    ...
+    print(log("Job completed!"));
+  }
+```
+
+E no arquivo `bin/dcat.dart`:
+
+```dart
+  task.dcat((txt) {
+    return "${DateTime.now().toString()} : $txt";
+  });
+```
+
+ou
+
+```dart
+  task.dcat((txt) => "${DateTime.now().toString()} : $txt");
+
+```
+
+
 ## Mais informações
 
 Há muitos detalhes interessantes sobre a linguagem Dart. O site oficial tem um [tour completo baseado em exemplos](https://dart.dev/guides/language/language-tour) bastante interessante para ser estudado.
