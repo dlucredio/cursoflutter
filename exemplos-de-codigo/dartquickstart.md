@@ -46,6 +46,8 @@ void main() {
 }
 ```
 
+É importante também entender como funcionam os parâmetros de funções. Dê uma olhada no [tour de funções e parâmetros em Dart](https://dart.dev/guides/language/language-tour#functions).
+
 ## 2. Dart tem um gerenciador de dependências e suporte a execução assíncrona
 
 Seguir o [tutorial CLI de Dart](https://dart.dev/tutorials/server/cmdline)
