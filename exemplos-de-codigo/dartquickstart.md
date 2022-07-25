@@ -48,7 +48,11 @@ void main() {
 
 É importante também entender como funcionam os parâmetros de funções. Dê uma olhada no [tour de funções e parâmetros em Dart](https://dart.dev/guides/language/language-tour#functions).
 
-## 2. Dart tem um gerenciador de dependências e suporte a execução assíncrona
+## 2. Dart tem suporte a execução assíncrona
+
+Seguir o [tutorial de await/async](https://dart.dev/codelabs/async-await)
+
+## 3. Dart tem um gerenciador de dependências
 
 Seguir o [tutorial CLI de Dart](https://dart.dev/tutorials/server/cmdline)
 
@@ -56,9 +60,9 @@ Utilizar o arquivo `lib/dcat.dart` para o método `dcat`
 
 Compilar com o comando `dart compile exe bin/dcat.dart`
 
-## 3. Dart é orientada a objetos
+## 4. Dart é orientada a objetos
 
-3.1. Modificar o arquivo `lib/dcat.dart`:
+4.1. Modificar o arquivo `lib/dcat.dart`:
 
 ```dart
 import 'dart:io';
@@ -110,9 +114,9 @@ class Task {
 }
 ```
 
-## 4. Dart tem segurança contra valores nulos
+## 5. Dart tem segurança contra valores nulos
 
-4.1. Veja, no exemplo anterior que, como as variáveis podem ser nulas, há necessidade de verificações a todo momento. Modificar para evitar isso:
+5.1. Veja, no exemplo anterior que, como as variáveis podem ser nulas, há necessidade de verificações a todo momento. Modificar para evitar isso:
 
 ```dart
 import 'dart:io';
@@ -164,7 +168,7 @@ class Task {
 }
 ```
 
-4.2. Uma outra forma de fazer isso é usando parâmetros nomeados:
+5.2. Uma outra forma de fazer isso é usando parâmetros nomeados:
 
 ```dart
 import 'dart:io';
@@ -246,7 +250,7 @@ class Task {
   }
 ```
 
-4.3. Como neste caso o conteúdo do construtor é apenas a inicialização, é possível simplificar:
+5.3. Como neste caso o conteúdo do construtor é apenas a inicialização, é possível simplificar:
 
 ```dart
 class Task {
@@ -260,7 +264,7 @@ class Task {
       this.paths = const []});
 ```
 
-4.4. Ou, caso queira utilizar somente parâmetros posicionais:
+5.4. Ou, caso queira utilizar somente parâmetros posicionais:
 
 ```dart
 class Task {
@@ -273,7 +277,7 @@ class Task {
 
 Neste caso, é preciso voltar à chamada posicional também.
 
-4.5. Também é possível criar um construtor nomeado:
+5.5. Também é possível criar um construtor nomeado:
 
 ```dart
   Task.fromInput()
@@ -288,9 +292,9 @@ Assim, quando for utilizá-lo, basta chamá-lo:
 final task = Task.fromInput();
 ```
 
-## 5. Em Dart, funções são objetos de primeira classe
+## 6. Em Dart, funções são objetos de primeira classe
 
-5.1. Modifique o arquivo `bin/dcat.dart`:
+6.1. Modifique o arquivo `bin/dcat.dart`:
 
 ```dart
 import 'package:args/args.dart';
@@ -316,7 +320,7 @@ void main(List<String> arguments) {
 }
 ```
 
-5.2. Modifique o arquivo `lib/dcat.dart`:
+6.2. Modifique o arquivo `lib/dcat.dart`:
 
 ```dart
 import 'dart:io';
@@ -374,7 +378,7 @@ class Task {
 
 Veja como a função é passada como um parâmetro comum, e chamada normalmente.
 
-5.3. Também é possível restringir os tipos de retorno e parâmetros da função:
+6.3. Também é possível restringir os tipos de retorno e parâmetros da função:
 
 ```dart
     Future<void> dcat(int Function(String) log) async {
@@ -383,7 +387,7 @@ Veja como a função é passada como um parâmetro comum, e chamada normalmente.
 
 Tente passar uma função com argumentos/retorno diferentes do esperado.
 
-5.4. É também possível utilizar funções anônimas:
+6.4. É também possível utilizar funções anônimas:
 
 ```dart
   task.dcat((txt) {
@@ -392,7 +396,7 @@ Tente passar uma função com argumentos/retorno diferentes do esperado.
   });
 ```
 
-5.5. Se a função anônima não faz nada além de retornar um valor, é possível simplificar:
+6.5. Se a função anônima não faz nada além de retornar um valor, é possível simplificar:
 
 No arquivo `lib/dcat.dart`:
 
@@ -421,7 +425,7 @@ ou
 
 ```
 
-5.6. Dá para usar isso para facilmente manipular valores:
+6.6. Dá para usar isso para facilmente manipular valores:
 
 ```dart
 import 'package:args/args.dart';
@@ -456,7 +460,7 @@ String log(String txt) {
 }
 ```
 
-5.7. Dá também para fazer coisas legais como transformar valores em objetos:
+6.7. Dá também para fazer coisas legais como transformar valores em objetos:
 
 ```dart
 import 'package:args/args.dart';
@@ -514,7 +518,6 @@ class LogItem {
   }
 }
 ```
-
 
 ## Mais informações
 
