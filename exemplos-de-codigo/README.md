@@ -6,3 +6,5 @@ Ordem sugerida para estudar:
 2. [Primeiro app em Flutter](./flutterfirstapp.md)
 3. [Layouts em Flutter](./layouts.md)
 4. [Navegação](./navigation.md)
+5. [Networking](./networking.md)
+6. [Persistência](./persistence.md)
