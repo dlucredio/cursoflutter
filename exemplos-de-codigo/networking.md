@@ -24,6 +24,7 @@ await Future.delayed(const Duration(seconds: 5));
 
 [Parse JSON in the background](https://docs.flutter.dev/cookbook/networking/background-parsing)
 
+* Este exemplo não funciona na web, devido às restrições Cross-Origin
 * Neste exemplo, é interessante para visualizar o travamento que ocorre, colocar um pequeno delay no parsing do JSON e remover o uso de `compute` para visualizar o efeito:
 
 ```dart
