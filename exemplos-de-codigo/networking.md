@@ -12,6 +12,8 @@ await Future.delayed(const Duration(seconds: 5));
 
 * E também é possível modificar a URL para provocar um erro e visualizar o efeito.
 
+[Make authenticated requests](https://docs.flutter.dev/cookbook/networking/authenticated-requests)
+
 [Send data to the Internet](https://docs.flutter.dev/cookbook/networking/send-data)
 
 [Update data over the Internet](https://docs.flutter.dev/cookbook/networking/update-data)
