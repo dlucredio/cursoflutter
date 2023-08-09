@@ -2,7 +2,7 @@
 
 ## Salvando dados como Shared Preferences
 
-Para poucas quantidades de dados e tipos primitivos básicos, essa opção é a preferida
+Para poucas quantidades de dados e tipos primitivos básicos, essa opção é a preferida. Funciona em qualquer plataforma, inclusive web.
 
 1. Criar um novo projeto Flutter:
 
