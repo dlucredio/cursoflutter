@@ -143,7 +143,7 @@ flutter pub get
 3. Criar um arquivo `lib/anime_quote.dart`:
 
 ```dart
-const randomAnimeQuoteUrl = 'https://animechan.vercel.app/api/random';
+const randomAnimeQuoteUrl = 'https://animechan.xyz/api/random';
 
 class AnimeQuote {
   final String id;
