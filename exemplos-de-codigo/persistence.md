@@ -560,12 +560,12 @@ class _MyHomePageState extends State<MyHomePage> {
 +                quotes: snapshot.data!,
                 toggleFavoriteCallback: _toggleFavorite,
                 deleteQuoteCallback: _deleteQuote,
- +             );
- +           } else if (snapshot.hasError) {
- +             return Text('${snapshot.error}');
- +           }
- +           return const CircularProgressIndicator();
- +         },
++             );
++           } else if (snapshot.hasError) {
++             return Text('${snapshot.error}');
++           }
++           return const CircularProgressIndicator();
++         },
         ),
       ),
       floatingActionButton: FloatingActionButton(
