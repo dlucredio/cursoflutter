@@ -644,6 +644,8 @@ class QuotesList extends StatelessWidget {
 }
 ```
 
+A documentação oficial tem exemplos sobre os conceitos vistos aqui: [SQLite](https://docs.flutter.dev/cookbook/persistence/sqlite)
+
 ## Outras opções
 
 O Flutter tem uma solução chamada [drift](https://drift.simonbinder.eu/), que é equivalente ao [Android Room](https://developer.android.com/training/data-storage/room).
